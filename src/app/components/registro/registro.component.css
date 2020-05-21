@@ -1,0 +1,30 @@
+.form-control{
+    background: rgba(60, 60, 60, 1);
+    border: none;
+    color:#ffffff;
+    border-radius: 1px;
+    transition: border-left .1s;
+}
+.form-control:focus{
+    background: none;
+    border: 1px solid rgb(60, 60, 60);
+    border-left: 5px solid rgb(97, 204, 122);
+    border-radius: 1px;
+    box-shadow: none;
+}
+.my-btn-registro{
+    background: #6DCA82;
+    color: #ffffff;
+}
+.my-btn-registro:hover{
+    background: rgb(58, 204, 92);
+    color: #ffffff;
+}
+.icon-facebook{
+    background: #3b5998;
+    color: #ffffff;
+}
+.icon-twitter{
+    background: #00acee;
+    color: #ffffff;
+}

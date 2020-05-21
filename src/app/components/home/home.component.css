@@ -1,0 +1,26 @@
+.my-bg-lightblue-1{
+    background: rgb(18, 147, 144,0.9);
+}
+.my-bg-lightblue-2{
+    background: rgba(11, 134, 131,0.9);
+}
+.my-bg-lightblue-3{
+    background: rgba(8, 121, 128,0.9);
+}
+.my-bg-lightblue-4{
+    background: rgba(2, 106, 103,0.9);
+}
+.my-bg-trasnparent{
+    background: rgba(0, 0, 0, 0.2);
+}
+#cajas{
+    margin-top: 150px;
+}
+#cajas .card{
+    border: none;
+    border-radius: 0px;
+}
+#cajas img{
+    width: 5em;
+    height: 6em;
+}

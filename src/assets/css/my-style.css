@@ -1,0 +1,42 @@
+@font-face{
+    font-family: "Roboto Bold";
+    src: url("../../../assets/font/Roboto-Bold.ttf");
+    font-family: "Roboto";
+    src: url("../../../assets/font/Roboto-Thin.ttf");
+}
+.my-text{
+    font-family: "Roboto";
+    font-size:160% ;
+}
+.my-text-2{
+    font-family: "Roboto";
+    font-size:110% ;
+}
+.titulo{
+    font-family: "Roboto";
+    font-size: 40px ;
+}
+.my-btn{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #6DCA82;
+    color: #ffffff;
+    padding: 10px 10px;
+    transition: font-size .4s;
+}
+.my-btn-2{
+    background: rgb(67, 163, 89);
+    border: none;
+    border-radius: 15px;
+}
+.my-btn:hover{
+    background: #6DCA82;
+    border-radius: 20px;
+    font-size: 150%;
+}
+.my-bg-dark{
+    background: rgba(48, 48, 48);
+}
+.my-bg-dark-2{
+    background: rgba(37, 37, 37);
+}
