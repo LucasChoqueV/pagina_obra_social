@@ -13,18 +13,10 @@
     box-shadow: none;
 }
 .my-btn-registro{
-    background: #6DCA82;
+    background: rgb(20, 196, 61);
     color: #ffffff;
 }
 .my-btn-registro:hover{
-    background: rgb(58, 204, 92);
-    color: #ffffff;
-}
-.icon-facebook{
-    background: #3b5998;
-    color: #ffffff;
-}
-.icon-twitter{
-    background: #00acee;
+    background: rgb(0, 194, 45);
     color: #ffffff;
 }

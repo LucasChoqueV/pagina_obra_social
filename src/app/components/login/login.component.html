@@ -1,0 +1,37 @@
+<!--  -->
+<div class="container">
+    <div class="row mb-5 py-4">
+        <div class="col-md-4 offset-md-4 my-bg-dark mt-5">
+            <form class="text-white my-text px-4 border-radius">
+                <div class="form-group my-5">
+                    <p class="text-center titulo ">Iniciar Sesion</p>
+                </div>
+                <div class="icon-inside form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="dni" name="dni" class="form-control" placeholder="D.N.I. de paciente">
+                </div>
+
+                <div class="icon-inside form-group text-white">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Contraseña">
+                </div>
+
+                <div class="my-5 text-center form-group">
+                    <button class="btn btn-outline-light">Iniciar sesion</button>
+                </div>
+                <div class="form-group text-center">
+                    <small class="my-text-2 d-block">Iniciar sesion usando</small>
+                    <a href="http://www.facebook.com" target="_blank" class="btn icon facebook"><i class="fab fa-facebook-square"></i></a>
+                    <a href="http://www.twitter.com" target="_blank" class="btn icon twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="http://www.google.com" target="_blank" class="btn icon google"><i
+                            class="fab fa-google"></i></a>
+                </div>
+
+                <div class="form-group my-text-2 text-center">
+                    <small>¿No tienes cuenta aun? <a [routerLink]="['/registro']" routerLinkActive="active" style="color:aqua"> Registrate aqui</a> </small>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

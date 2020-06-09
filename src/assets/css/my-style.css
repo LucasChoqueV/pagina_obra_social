@@ -6,11 +6,11 @@
 }
 .my-text{
     font-family: "Roboto";
-    font-size:160% ;
+    font-size:25px ;
 }
 .my-text-2{
     font-family: "Roboto";
-    font-size:110% ;
+    font-size:17px ;
 }
 .titulo{
     font-family: "Roboto";
@@ -39,4 +39,10 @@
 }
 .my-bg-dark-2{
     background: rgba(37, 37, 37);
+}
+.bg-gradiant{
+    background: linear-gradient(to top, rgb(18, 147, 144), rgba(2, 106, 103));
+}
+.border-radius{
+    border-radius: 15px;
 }

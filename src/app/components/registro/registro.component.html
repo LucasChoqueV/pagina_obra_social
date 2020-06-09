@@ -1,11 +1,7 @@
 <div class="container py-5">
     <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2 px-5 py-4 my-bg-dark text-white">
-            <div class="form-row py-3">
-                <a href="http://www.facebook.com" target="_blank" class="btn col-md-6 icon-facebook"><i class="fab fa-facebook-f"></i> Conectarse con Facebook</a>
-                <a href="http://www.twitter.com" target="_blank" class="btn col-md-6 icon-twitter"><i class="fab fa-twitter"></i> Conectarse con Twitter</a>
-            </div>
-            <p class="titulo text-center">Registro</p>
+        <form class="col-sm-12 col-md-8 offset-md-2 px-5 py-4 my-bg-dark text-white border-radius">
+            <p class="titulo text-center">Registro Paciente</p>
             <div class="form-row pt-2 my-text-2">
                 <div class="col-sm-6 col-md-4 form-group">
                     <label for="nombre">Nombre completo</label>
@@ -22,11 +18,11 @@
                         Villareal</small>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="usuario">Nombre de usuario</label>
+                    <label for="usuario">D.N.I.</label>
                     <input type="text" class="form-control " id="usuario" aria-describedby="ayudaUsuario"
-                        placeholder="Usuario" required>
-                    <small id="ayudaUsuario" class="form-text text-muted"> Ingrese su usuario. Ej
-                        Josema</small>
+                        placeholder="D.N.I" required>
+                    <small id="ayudaUsuario" class="form-text text-muted"> Ingrese su DNI. Ej
+                        41218784</small>
                 </div>
             </div>
             <div class="form-row pt-2 my-text-2">
@@ -58,12 +54,24 @@
                     <input type="email" class="form-control " id="emailConfirm" placeholder="Confirmar e-mail" required>
                 </div>
             </div>
-            <div class="form-group pt-2 my-text-2 ">
+            <div class="form-row pt-2 my-text-2">
+              <div class="col-sm-6 col-md-4 form-group">
                 <label for="fecha">Fecha de nacimiento</label>
                 <input type="date" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
                 <small id="ayudaFecha" class="form-text text-muted">Ingrese una fecha valida</small>
             </div>
-            <div class="form-group pt-2 my-text-2">
+            <div class="col-sm-6 col-md-4 form-group">
+                <label for="fecha">Direccion</label>
+                <input type="text" placeholder="Calle Petranca 453" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
+                <small id="ayudaFecha" class="form-text text-muted">Ingrese una direccion valida</small>
+            </div>
+            <div class="col-sm-6 col-md-4 form-group">
+                <label for="fecha">Telefono</label>
+                <input type="text" placeholder="Ej. 4521531" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
+                <small id="ayudaFecha" class="form-text text-muted">Ingrese una telefono valida</small>
+            </div>
+            </div>
+            <!--<div class="form-group pt-2 my-text-2">
                 <label for="pais">Pais</label>
                 <select class="form-control " id="pais">
                     <option>Argentina</option>
@@ -84,7 +92,7 @@
                     <input type="radio" class="form-check-input" id="masculino" name="genero" value="m" required>
                     <label for="masculino" class="form-check-label">Masculino</label>
                 </div>
-            </div>
+            </div>  -->
 
             <div class="form-check my-5 my-text-2">
                 <input class="form-check-input" type="checkbox" id="termino" required>
