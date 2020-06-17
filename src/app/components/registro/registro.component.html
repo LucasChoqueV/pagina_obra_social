@@ -1,106 +1,160 @@
 <div class="container py-5">
     <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2 px-5 py-4 my-bg-dark text-white border-radius">
-            <p class="titulo text-center">Registro Paciente</p>
-            <div class="form-row pt-2 my-text-2">
-                <div class="col-sm-6 col-md-4 form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" class="form-control" id="nombre" aria-describedby="ayudaNombre"
-                        placeholder="Nombre completo" required>
-                    <small id="ayudaUsuario" class="form-text text-muted"> Ingrese su nombre real. Ej José
-                        María</small>
+        <div class="col-sm-12 col-md-8 offset-md-2 px-5 py-3 my-bg-dark text-white border-radius">
+            <form #formRegistro="ngForm">
+                <p class="titulo text-center">Registro Paciente</p>
+                <div class="form-row pt-2 my-text-2">
+                    <div class="col-sm-6 col-md-4 form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="ayudaNombre"
+                            placeholder="Nombre completo" required #nombreV="ngModel" [(ngModel)]="pacienteNuevo.nombre">
+                        <!-- Validacion -->
+                        <div id="ayudaNombre" *ngIf="nombreV.invalid && (nombreV.dirty || nombreV.touched)">
+                            <div *ngIf="nombreV.errors.required">
+                                <small class="text-danger"><Strong>*Nombre Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control " id="apellido" name="apellido"
+                            aria-describedby="ayudaApellido" placeholder="Apellido" required #apellidoV="ngModel"
+                            [(ngModel)]="pacienteNuevo.apellido">
+                        <!-- Validacion -->
+                        <div id="ayudaApellido" *ngIf="apellidoV.invalid && (apellidoV.dirty || apellidoV.touched)">
+                            <div *ngIf="apellidoV.errors.required">
+                                <small class="text-danger"><Strong>*Apellido Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="dni">D.N.I.</label>
+                        <input type="number" class="form-control " id="dni" name="dni" aria-describedby="ayudaUsuario"
+                            placeholder="D.N.I" required #dniV="ngModel" [(ngModel)]="pacienteNuevo.dni" (change)="validarDni()">
+                        <!-- Validacion -->
+                        <div class="ayudaUsuario" *ngIf="dniV.invalid && (dniV.dirty || dniV.touched)">
+                            <div *ngIf="dniV.errors.required">
+                                <small class="text-danger"><Strong>*DNI Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                        <div *ngIf="varValidarDni">
+                            <small class="text-danger"><Strong>*DNI ya existe</Strong></small>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6 col-md-4 form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control " id="apellido" aria-describedby="ayudaApellido"
-                        placeholder="Apellido" required>
-                    <small id="ayudaApellido" class="form-text text-muted"> Ingrese su apellido. Ej
-                        Villareal</small>
+                <div class="form-row pt-2 my-text-2">
+                    <div class="col-sm-6 form-group">
+                        <label for="contra">Contraseña</label>
+                        <input type="password" class="form-control " id="contra" name="contra" aria-describedby="ayudaPass"
+                            placeholder="Contraseña" required #contraV="ngModel" [(ngModel)]="pacienteNuevo.contrasena" (change)="validarContrasena()">
+                        <!-- Validacion -->
+                        <div *ngIf="contraV.invalid && (contraV.dirty || contraV.touched)">
+                            <div *ngIf="contraV.errors.required">
+                                <small class="text-danger"><Strong>*Contraseña Obligatoria</Strong></small>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-sm-6 form-group">
+                        <label for="contraConfirm">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="contraConfirm" name="contraConfirm"
+                            placeholder="Confirmar contraseña" required #contraConfirmV="ngModel"
+                            [(ngModel)]="confirmarContrasena" (change)="validarContrasena()">
+    
+                        <!-- Validacion -->
+                        <div *ngIf="contraConfirmV.invalid && (contraConfirmV.dirty || contraConfirmV.touched)">
+                            <div *ngIf="contraConfirmV.errors.required">
+                                <small class="text-danger"><Strong>*Confirmar Contraseña Obligatoria</Strong></small>
+                            </div>
+                        </div>
+                        <div *ngIf="!varValidarContrasena">
+                            <small class="text-danger"><Strong>*Las contraseñas no conciden</Strong></small>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 form-group">
-                    <label for="usuario">D.N.I.</label>
-                    <input type="text" class="form-control " id="usuario" aria-describedby="ayudaUsuario"
-                        placeholder="D.N.I" required>
-                    <small id="ayudaUsuario" class="form-text text-muted"> Ingrese su DNI. Ej
-                        41218784</small>
+    
+                <div class="form-row pt-2  my-text-2">
+                    <div class="col-sm-6 form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control " id="email" name="email" aria-describedby="ayudaEmail"
+                            placeholder="E-mail" required #emailV="ngModel" [(ngModel)]="pacienteNuevo.email" (change)="validarEmail()">
+                        <!-- Validacion -->
+                        <div *ngIf="emailV.invalid && (emailV.dirty || emailV.touched)">
+                            <div *ngIf="emailV.errors.required">
+                                <small class="text-danger"><Strong>*E-Mail Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                        <div *ngIf="varValidarEmailRepetido">
+                            <small class="text-danger"><Strong>*E-Mail ya existe</Strong></small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="emailConfirm">Confirmar e-mail</label>
+                        <input type="email" class="form-control " id="emailConfirm" name="emailConfirm"
+                            placeholder="Confirmar e-mail" required #emailConfirmV="ngModel" [(ngModel)]="confirmarEmail" (change)="validarEmail()">
+                        <!-- Validacion -->
+                        <div *ngIf="emailConfirmV.invalid && (emailConfirmV.dirty || emailConfirmV.touched)">
+                            <div *ngIf="emailConfirmV.errors.required">
+                                <small class="text-danger"><Strong>*E-Mail Confirmar Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                        <div *ngIf="!varValidarEmail">
+                            <small class="text-danger"><Strong>*Los E-mails no coinciden</Strong></small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row pt-2 my-text-2">
-                <div class="col-sm-6 form-group">
-                    <label for="pass">Contraseña</label>
-                    <input type="password" class="form-control " id="pass" aria-describedby="ayudaPass"
-                        placeholder="Contraseña" required>
-                    <small id="ayudaPass" class="form-text text-muted"> Ingrese una contraseña dificil de
-                        adivinar</small>
+                <div class="form-row pt-2 my-text-2">
+                    <div class="col-sm-6 col-md-4 form-group">
+                        <label for="fecha">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="ayudaFecha"
+                            required #fechaV="ngModel" [(ngModel)]="pacienteNuevo.fechaNacimiento">
+                        <!-- Validacion -->
+                        <div *ngIf="fechaV.invalid && (fechaV.dirty || fechaV.touched)">
+                            <div *ngIf="fechaV.errors.required">
+                                <small class="text-danger"><Strong>*Fecha Obligatoria</Strong></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" placeholder="Calle Petranca 453" class="form-control" id="direccion"
+                            name="direccion" aria-describedby="ayudaDireccion" required #direccionV="ngModel"
+                            [(ngModel)]="pacienteNuevo.direccion">
+                        <!-- Validacion -->
+                        <div *ngIf="direccionV.invalid && (direccionV.dirty || direccionV.touched)">
+                            <div *ngIf="direccionV.errors.required">
+                                <small class="text-danger"><Strong>*Direccion Obligatoria</Strong></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="text" placeholder="Ej. 4521531" class="form-control" id="telefono" name="telefono"
+                            aria-describedby="ayudaTelefono" required #telefonoV="ngModel"
+                            [(ngModel)]="pacienteNuevo.telefono">
+                        <!-- Validacion -->
+                        <div *ngIf="telefonoV.invalid && (telefonoV.dirty || telefonoV.touched)">
+                            <div *ngIf="telefonoV.errors.required">
+                                <small class="text-danger"><Strong>*Telefono Obligatorio</Strong></small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-sm-6 form-group">
-                    <label for="passConfirm">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="passConfirm" placeholder="Confirmar contraseña"
-                        required>
+                <div class="form-check my-5 my-text-2">
+                    <input class="form-check-input" type="checkbox" id="termino" name="termino" required #terminoV="ngModel"
+                        [(ngModel)]="termino">
+                    <label class="form-check-label" for="termino">
+                        Acepto las condiciones del servicio y la politica de OSFIUNJU
+                    </label>
+                    <!-- Validacion -->
+                    <div *ngIf="terminoV.invalid && (terminoV.dirty || terminoV.touched)">
+                        <div *ngIf="terminoV.errors.required">
+                            <small class="text-danger"><Strong>*Debe Aceptar los terminos</Strong></small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-row pt-2  my-text-2">
-                <div class="col-sm-6 form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control " id="email" aria-describedby="ayudaEmail"
-                        placeholder="E-mail" required>
-                    <small id="ayudaEmail" class="form-text text-muted"> Ingrese una direccion de correo
-                        valida</small>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="emailConfirm">Confirmar e-mail</label>
-                    <input type="email" class="form-control " id="emailConfirm" placeholder="Confirmar e-mail" required>
-                </div>
-            </div>
-            <div class="form-row pt-2 my-text-2">
-              <div class="col-sm-6 col-md-4 form-group">
-                <label for="fecha">Fecha de nacimiento</label>
-                <input type="date" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
-                <small id="ayudaFecha" class="form-text text-muted">Ingrese una fecha valida</small>
-            </div>
-            <div class="col-sm-6 col-md-4 form-group">
-                <label for="fecha">Direccion</label>
-                <input type="text" placeholder="Calle Petranca 453" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
-                <small id="ayudaFecha" class="form-text text-muted">Ingrese una direccion valida</small>
-            </div>
-            <div class="col-sm-6 col-md-4 form-group">
-                <label for="fecha">Telefono</label>
-                <input type="text" placeholder="Ej. 4521531" class="form-control" id="fecha" aria-describedby="ayudaFecha" required>
-                <small id="ayudaFecha" class="form-text text-muted">Ingrese una telefono valida</small>
-            </div>
-            </div>
-            <!--<div class="form-group pt-2 my-text-2">
-                <label for="pais">Pais</label>
-                <select class="form-control " id="pais">
-                    <option>Argentina</option>
-                    <option>Brasil</option>
-                    <option>Bolivia</option>
-                    <option>Chile</option>
-                    <option>Paraguay</option>
-                    <option>Uruguay</option>
-                </select>
-            </div>
-            <div class="my-text-2">
-                <label for="radioGenero" class="form-check-label py-3">Genero</label><br>
-                <div class="form-check form-check-inline" id="radioGenero">
-                    <input type="radio" class="form-check-input" id="femenino" name="genero" value="f" required>
-                    <label for="femenino" class="form-check-label">Femenino</label>
-                </div>
-                <div class="form-check form-check-inline " id="radioGenero">
-                    <input type="radio" class="form-check-input" id="masculino" name="genero" value="m" required>
-                    <label for="masculino" class="form-check-label">Masculino</label>
-                </div>
-            </div>  -->
-
-            <div class="form-check my-5 my-text-2">
-                <input class="form-check-input" type="checkbox" id="termino" required>
-                <label class="form-check-label" for="termino">
-                    Acepto las condiciones del servicio y la politica de OSFIUNJU
-                </label>
-            </div>
-            <input type="submit" class="btn btn-lg w-100 titulo my-btn-registro" value="Crear cuenta">
-        </form>
+                <button class="btn btn-outline-success btn-lg w-100 " (click)="createPaciente()" [disabled]="(!formRegistro.form.valid) || (!varValidarContrasena) || (!varValidarEmail) || (varValidarDni) ||(varValidarEmailRepetido)" [routerLink]="['/login']">Crear Cuenta</button>
+            </form>
+        </div>
     </div>
 </div>

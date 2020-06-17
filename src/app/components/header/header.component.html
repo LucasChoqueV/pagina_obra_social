@@ -8,11 +8,32 @@
             </button>
             <div class="collapse navbar-collapse" id="menuColapso">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['inicio']" routerLinkActive="active">Inicio</a>
+                    <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['inicio']"
+                            routerLinkActive="active">Inicio</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['servicios']" routerLinkActive="active" >Servicios</a>
+                    <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['servicios']"
+                            routerLinkActive="active">Servicios</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['login']" routerLinkActive="active">Iniciar Sesion</a></li>
+                    <li *ngIf="!pacienteService.pacienteLoggedIn" class="nav-item"><a
+                            class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['login']"
+                            routerLinkActive="active">Iniciar Sesion</a></li>
+                    <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['turno']"
+                            routerLinkActive="active">Turnos</a></li>
+                    <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['consulta']"
+                            routerLinkActive="active">Consultas Online</a></li>
+                    <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link my-text-2 py-3 px-4 text-white" href="#"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{pacienteService.pacienteLogged.nombre}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" > Configuracion</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logout()" [routerLink]="['home']" >Cerrar Sesion</a>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </nav>
