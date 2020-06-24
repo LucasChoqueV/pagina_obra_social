@@ -14,18 +14,53 @@
                     <li class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['servicios']"
                             routerLinkActive="active">Servicios</a>
                     </li>
-                    <li *ngIf="!pacienteService.pacienteLoggedIn" class="nav-item"><a
+                    <li *ngIf="!pacienteService.pacienteLoggedIn && !espService.espLoggedIn && !userService.userLoggedIn" class="nav-item"><a
                             class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['login']"
                             routerLinkActive="active">Iniciar Sesion</a></li>
                     <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['turno']"
                             routerLinkActive="active">Turnos</a></li>
+
                     <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['consulta']"
-                            routerLinkActive="active">Consultas Online</a></li>
+                            routerLinkActive="active">Consultas Online<span *ngIf="consultaService.cantNotificaciones > 0" class="badge badge-danger">{{consultaService.cantNotificaciones}}</span></a></li>
+
+                    <li *ngIf="espService.espLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['consultaEsp']"
+                        routerLinkActive="active">Gestion Consultas<span *ngIf="consultaService.cantNotificaciones >0" class="badge badge-danger">{{consultaService.cantNotificaciones}}</span></a></li>          
+
+                    <li *ngIf="userService.userLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['gestionPac']"
+                         routerLinkActive="active">Gestion Pacientes</a></li>
+
+                    <li *ngIf="userService.userLoggedIn" class="nav-item"><a class="nav-link my-text-2 py-3 px-4 text-white" [routerLink]="['gestionEsp']"
+                        routerLinkActive="active">Gestion Medicos</a></li>
+
                     <li *ngIf="pacienteService.pacienteLoggedIn" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle nav-link my-text-2 py-3 px-4 text-white" href="#"
                             id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             {{pacienteService.pacienteLogged.nombre}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" [routerLink]="['modificar-paciente']"><i class="fas fa-cog"></i> Configuracion</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logout()" [routerLink]="['home']" ><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
+                        </div>
+                    </li>
+                    <li *ngIf="espService.espLoggedIn" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link my-text-2 py-3 px-4 text-white" href="#"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{espService.espLogged.nombre}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" > Configuracion</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" (click)="logout()" [routerLink]="['home']" >Cerrar Sesion</a>
+                        </div>
+                    </li>
+                    <li *ngIf="userService.userLoggedIn" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link my-text-2 py-3 px-4 text-white" href="#"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{userService.userLogged.nombre}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" > Configuracion</a>

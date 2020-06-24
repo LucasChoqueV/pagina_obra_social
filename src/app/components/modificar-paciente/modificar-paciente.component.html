@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-3 pr-2">
+            <div class="my-bg-dark text-white">
+                <p class="titulo  px-2">Mi Perfil</p>
+                <div class="h-divider mb-4"></div>
+                <div class="my-text-2 px-2">
+                    <div class="card px-2" >
+                        <img src="./../../../assets/img/user.png" class="card-img-top m-auto">
+                        <div class="h-divider"></div>
+                        <div class="card-body">
+                            <p class="card-text">Nombre: <strong> {{serPaciente.pacienteLogged.nombre}}</strong></p>
+                            <p class="card-text">Apellido: <strong>  {{serPaciente.pacienteLogged.apellido}}</strong></p>
+                            <p class="card-text">E-mail:  <strong> {{serPaciente.pacienteLogged.email}}</strong></p>
+                            <p class="card-text">Direccion:  <strong> {{serPaciente.pacienteLogged.direccion}}</strong></p>
+                            <p class="card-text">Telefono:  <strong> {{serPaciente.pacienteLogged.telefono}}</strong></p>
+                            <p class="card-text">Nacimiento:
+                                 <strong> {{serPaciente.pacienteLogged.fechaNacimiento | date: 'dd/MM/yyyy'}}</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-9 pl-4">
+            <div class="row my-bg-dark">
+                <p class="titulo text-white px-4"><i class="fas fa-pen"></i> Modificar Perfil</p>
+                <div class="h-divider mb-5"></div>
+                <div class="col-md-8 offset-md-2 ">
+                    <form class="text-white my-text-2" #formModificar="ngForm">
+                        <div class="form-group row">
+                            <label for="apellido" class="col-sm-2">Apellido</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="apellido" id="apellido" class="form-control" [(ngModel)]="pacienteModificar.apellido" required #apellidoV="ngModel">
+                                <div *ngIf="apellidoV.invalid && (apellidoV.dirty || apellidoV.touched)">
+                                    <div *ngIf="apellidoV.errors.required">
+                                        <small class="text-danger"><Strong>*Apellido Obligatorio</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nombre" class="col-sm-2">Nombre</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="pacienteModificar.nombre" required #nombreV="ngModel">
+                                <div *ngIf="nombreV.invalid && (nombreV.dirty || nombreV.touched)">
+                                    <div *ngIf="nombreV.errors.required">
+                                        <small class="text-danger"><Strong>*Nombre Obligatorio</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pass" class="col-sm-2">Contraseña</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="pass" id="pass" class="form-control" [(ngModel)]="pacienteModificar.contrasena" required #passV="ngModel">
+                                <div *ngIf="passV.invalid && (passV.dirty || passV.touched)">
+                                    <div *ngIf="passV.errors.required">
+                                        <small class="text-danger"><Strong>*Contraseña Obligatorio</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="direccion" class="col-sm-2">Direccion</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="direccion" id="direccion" class="form-control" [(ngModel)]="pacienteModificar.direccion" required #direccionV="ngModel">
+                                <div *ngIf="direccionV.invalid && (direccionV.dirty || direccionV.touched)">
+                                    <div *ngIf="direccionV.errors.required">
+                                        <small class="text-danger"><Strong>*Direccion Obligatoria</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telefono" class="col-sm-2">Telefono</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="telefono" id="telefono" class="form-control" [(ngModel)]="pacienteModificar.telefono" required #telefonoV="ngModel">
+                                <div *ngIf="telefonoV.invalid && (telefonoV.dirty || telefonoV.touched)">
+                                    <div *ngIf="telefonoV.errors.required">
+                                        <small class="text-danger"><Strong>*Telefono Obligatorio</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fecha" class="col-sm-2">Nacimiento</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="fecha" id="fecha" class="form-control" [(ngModel)]="pacienteModificar.fechaNacimiento" required #fechaV="ngModel">
+                                <div *ngIf="fechaV.invalid && (fechaV.dirty || fechaV.touched)">
+                                    <div *ngIf="fechaV.errors.required">
+                                        <small class="text-danger"><Strong>*Fecha Obligatoria</Strong></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group text-center my-5">
+                            <a class="btn btn-success mx-4" [disabled]="(!formModificar.form.valid)" (click)="guardarPaciente()" [routerLink]="['home']"><i class="far fa-save"></i> Guardar cambios</a>
+                            <a class="btn btn-danger mx-4" [routerLink]="['home']"><i class="fas fa-window-close"></i> Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,211 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row mt-3 mb-5 justify-content-center p-2">
+                <div class="col-12 col-md-8">
+                  <form class="card" #formEsp="ngForm" >
+                     <div class="card-header fondo"> 
+                       <h3 class=" font-weight-bold text-white">  Gestion De Especialistas:  </h3>  
+                     </div>
+                      <div class="card-body fondo-body text-white">
+                        <div class="row form-group">
+                          <label class="col-sm-12 col-md-4 font-weight-bold">Apellido: </label>
+                           <input class="form-control col-sm-12 col-md-8" #apellido="ngModel" type="text" name="apellido" [(ngModel)]="especialista.apellido" placeholder="Apellido del paciente" required/>
+                          <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                           <div *ngIf="apellido.errors.required"> Apellido es requerido.</div> 
+                          
+                            </div>
+                        </div>
+                       <div class="row form-group">
+                          <label class="col-sm-12 col-md-4 font-weight-bold" >Nombre: </label>
+                           <input class="form-control col-sm-12 col-md-8" #nombre="ngModel" type="text" name="nombre" [(ngModel)]="especialista.nombre" placeholder="Nombre del paciente" required/>
+                           <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                             <div *ngIf="nombre.errors.required"> Nombre es requerido.</div> 
+                           </div>
+                         </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >DNI: </label>
+                             <input class="form-control col-sm-12 col-md-8" #dni="ngModel" type="text" name="dni" [(ngModel)]="especialista.dni" placeholder="DNI del paciente" required/>
+                             <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="dni.errors.required"> DNI es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Direccion: </label>
+                             <input class="form-control col-sm-12 col-md-8" #direccion="ngModel" type="text" name="direccion" [(ngModel)]="especialista.direccion" placeholder="Direccion del paciente" required/>
+                             <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="direccion.errors.required"> Direccion es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Telefono: </label>
+                             <input class="form-control col-sm-12 col-md-8" #telefono="ngModel" type="number" name="Telefono" [(ngModel)]="especialista.telefono" placeholder="Telefono 4913162" required/>
+                             <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="telefono.errors.required"> Telefono es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Email: </label>
+                             <input class="form-control col-sm-12 col-md-8" #email="ngModel" type="email" name="email" pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="especialista.email" placeholder="algo@algo.com" required/>
+                             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="email.errors.required"> Email es requerido.</div> 
+                               <div *ngIf="email.errors.pattern"> Email es invalido, ej: algo@algo.com.</div>
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Contraseña: </label>
+                             <input class="form-control col-sm-12 col-md-8" #pass="ngModel" type="text" name="pass" [(ngModel)]="especialista.contrasena" placeholder="*******" required/>
+                             <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="pass.errors.required"> Contraseña es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Fecha Nacimiento: </label>
+                             <input class="form-control col-sm-12 col-md-8" #fecha="ngModel" type="date" name="fecha" [(ngModel)]="especialista.fechaNacimiento" placeholder="3/3/2000" required/>
+                             <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="fecha.errors.required"> Fecha es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Matricula: </label>
+                             <input class="form-control col-sm-12 col-md-8" #matricula="ngModel" type="text" name="matricula" [(ngModel)]="especialista.matricula" placeholder="5019" required/>
+                             <div *ngIf="matricula.invalid && (matricula.dirty || matricula.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="matricula.errors.required"> Matricula es requerido.</div> 
+                             </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4 font-weight-bold" >Especialidad: </label>
+                             <input class="form-control col-sm-12 col-md-8" #esp="ngModel" type="text" name="esp" [(ngModel)]="especialista.especialidad" placeholder="Neumonologo..." required/>
+                             <div *ngIf="esp.invalid && (esp.dirty || esp.touched)" class="bg-danger mt-1 text-white col-sm-12 offset-md-4 col-md-8"> 
+                               <div *ngIf="esp.errors.required"> Especialidad es requerido.</div> 
+                             </div>
+                        </div>
+                       <div class="row form-group">
+                           <div class="col-12 p-3 mr-2">
+                             <button type="button" class="btn btn-dark m-1" (click)="registrarEspecialista(); formEsp.reset() " [disabled]="!(formEsp.form.valid && btnGuardar)" ><i class="fas fa-check-square"></i> Guardar</button>                       
+                             <button *ngIf="btnModificar" type="button" class="btn btn-dark m-1" (click)="modificarEspecialista(); formEsp.reset() " [disabled]="!(formEsp.form.valid && btnModificar)"><i class="fas fa-check-square"></i> Modificar</button>
+                             <button *ngIf="btnModificar" type="button" class="btn btn-dark m-1" (click)="cancelarModificacion(); formEsp.reset() " ><i class="fas fa-window-close"></i> Cancelar</button>                       
+                           </div>
+                        </div>
+                    </div>
+                 </form>
+                </div>
+                  
+          </div>
+      
+            <!--  -->
+            <div class="row mb-5">
+              <div class="col-sm-12 justify-content-center fondo">
+                <div class="h3 bg-gray text-center mt-2 mb-2 text-white"> LISTA DE ESPECIALISTAS:</div>
+              </div>
+            </div>
+            <!-- tabla -->
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-md-10 table-responsive">
+                <table class="table table-striped " [mfData]="especialistas" #mf="mfDataTable" [mfRowsOnPage]="5">
+                  <thead class="fondo text-white">
+                    <tr class="text-center">
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="apellido"> Apellido</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="nombre"> Nombre</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="dni"> DNI</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="direccion"> Direccion</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="telefono"> Telefono</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="email"> Email:</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="contrasena"> Contraseña:</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="fechaNacimiento"> Nacimiento:</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="matricula"> Matricula:</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="especialidad"> Especialidad:</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        Acciones:
+                    </th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-white fondo-body">
+                    <tr *ngFor="let item of mf.data">
+                      <td> {{item.apellido | uppercase}} </td>
+                      <td> {{item.nombre}} </td>
+                      <td> {{item.dni}} </td> 
+                      <td> {{item.direccion}} </td>
+                      <td> {{item.telefono}} </td>
+                      <td> {{item.email}} </td>
+                      <td> {{item.contrasena}} </td>
+                      <td> {{item.fechaNacimiento | date:"dd-MM-yyyy" }} </td>
+                      <td> {{item.matricula | uppercase}} </td>
+                      <td> {{item.especialidad | uppercase}} </td>  
+                      <td> 
+                        <button type="button" title="edit" class="btn btn-dark mr-1 mb-1" (click)="elegirEspecialista(item)" ><i class="fas fa-edit"></i></button>    
+                        <button [disabled]="btnModificar" type="button" title="delete" class="btn btn-dark mr-1 mb-1" (click)="cargarEspecialistaModal(item)" data-toggle="modal" data-target="#eliminar"><i class="fas fa-trash-alt"></i></button>         
+                      </td>  
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="11">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,15,20]"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            
+            </div> 
+      
+        </div>
+      </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header fondo">
+          <h5 class="modal-title font-weight-bold text-white " id="exampleModalLabel"><i class="fas fa-exclamation-triangle text-danger"></i> CONFIRMACION DE ACCION: </h5>
+        </div>
+        <div class="modal-body text-white fondo-body">
+          <form>
+            <div class="form-group">
+              <div class="row">
+                <label class="col-12 font-weight-bold"> Eliminar Medico<i class="fas fa-question text-danger"></i></label>
+                 <label class="col-12 col-md-4 font-weight-bold">Apellido:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.apellido | uppercase}} </div> 
+                 <label class="col-12 col-md-4 font-weight-bold">Nombre:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.nombre}} </div>
+                 <label class="col-12 col-md-4 font-weight-bold">Matr&iacute;cula:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.matricula}} </div>  
+                 <label class="col-12 col-md-4 font-weight-bold">DNI:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.dni}} </div> 
+                 <label class="col-12 col-md-4 font-weight-bold">Especialidad:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.especialidad | uppercase}} </div> 
+                 <label class="col-12 col-md-4 font-weight-bold">Email:</label>
+                 <div class="col-12 col-md-8"> {{especialistaBorrar.email}} </div> 
+              </div>
+            </div>
+         </form>
+        </div>
+        <div class="modal-footer fondo">
+          <button type="button" class="btn btn-dark" (click)="borrarEspecialista()" data-dismiss="modal">ACEPTAR</button>
+          <button type="button" class="btn btn-dark"  data-dismiss="modal">CANCELAR</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,22 @@
+.card{
+    background: none;
+    border: none;
+}
+.card-img-top{
+    height: 12rem;
+    width: 10rem;
+}
+.form-control{
+    background: rgba(60, 60, 60, 1);
+    border: none;
+    color:#ffffff;
+    border-radius: 1px;
+    transition: border-left .1s;
+}
+.form-control:focus{
+    background: none;
+    border: 1px solid rgb(60, 60, 60);
+    border-left: 5px solid rgb(97, 204, 122);
+    border-radius: 1px;
+    box-shadow: none;
+}

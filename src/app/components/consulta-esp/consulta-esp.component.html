@@ -1,0 +1,158 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+      
+            <!--  -->
+            <div class="row mb-5">
+              <div class="col-sm-12 justify-content-center fondo">
+                <div class="h3 bg-gray text-center mt-2 mb-2 text-white"> LISTA DE SOLICITUDES DE CONSULTAS:</div>
+              </div>
+            </div>
+            <!-- tabla -->
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-md-10 table-responsive">
+                <table class="table table-striped " [mfData]="consultas" #mf="mfDataTable" [mfRowsOnPage]="5">
+                  <thead class="fondo text-white">
+                    <tr class="text-center">
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="dniPaciente"> DNI Paciente</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="nombrePaciente"> Paciente</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="especialidad"><i class="fas fa-check"></i> Especialidad</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="fecha"> Fecha</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="nombreMedico"><i class="fas fa-check"></i> Nombre Medico</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="link"><i class="fas fa-check"></i> Link</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="estado"><i class="fas fa-check"></i> Estado</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="motivoRechazo"><i class="fas fa-check"></i> Motivo Rechazo</mfDefaultSorter>
+                      </th>
+                      <th style="width: 10%">
+                        Acciones:
+                    </th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-white fondo-body text-center">
+                    <tr *ngFor="let item of mf.data">
+                      <td> {{item.dniPaciente}} </td>
+                      <td> {{item.nombrePaciente | uppercase}} </td>
+                      <td> {{item.especialidad | uppercase}} </td>
+                      <td> {{item.fecha | date:"short"}} </td> 
+                      <td> {{item.nombreMedico}} </td> 
+                      <td> {{item.link}} </td>
+                      <td> {{item.estado}} </td> 
+                      <td> {{item.motivoRechazo}} </td> 
+                      <td> 
+                        <button type="button" title="confirmar" class="btn  mr-1 mb-1" (click)="cargarConsulta(item)" data-toggle="modal" data-target="#confirmarConsulta">CONFIRMAR</button>  
+                        <button type="button" title="rechazar" class="btn mr-1 mb-1" (click)="cargarConsulta(item)" data-toggle="modal" data-target="#cancelarConsulta">RECHAZAR</button>                  
+                      </td>  
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="9">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,15,20]"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            
+            </div> 
+      
+        </div>
+      </div>
+      
+     
+</div>
+
+ <!-- Modal Confirmar-->
+ <div class="modal fade" id="confirmarConsulta" tabindex="-1" role="dialog" aria-labelledby="confirmarConsulta" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header fondo">
+        <h5 class="modal-title font-weight-bold text-white " id="confirmarConsulta"><i class="fas fa-exclamation-triangle text-danger"></i> CONFIRMACION: </h5>
+      </div>
+      <div class="modal-body text-white fondo-body">
+        <form #formConsultaEsp="ngForm">
+          <div class="form-group">
+            <div class="row">
+               <label class="col-12 col-md-4 font-weight-bold">DNI Paciente:</label>
+               <div class="col-12 col-md-8"> {{consulta.dniPaciente}} </div> 
+               <label class="col-12 col-md-4 font-weight-bold">Motivo:</label>
+               <div class="col-12 col-md-8"> {{consulta.motivo}} </div> 
+              
+                  <label class="col-sm-12 col-md-4 font-weight-bold text-white">Establezca la Fecha: </label>
+                  <input class="form-control col-sm-12 col-md-10  mr-2 ml-2"  #fecha="ngModel" type="datetime" name="fecha" [(ngModel)]="fechaC" required placeholder="5/5/2020 5:00 PM"/>
+                  <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)" class="alert-danger mr-2 ml-2 mt-1 text-white col-sm-10">
+                    <div *ngIf="fecha.errors.required">
+                      Fecha es requerida.
+                    </div>
+                  </div>
+
+
+                  <label class="col-sm-12 col-md-4 font-weight-bold text-white">Establezca el Link: </label>
+                  <input class="form-control col-sm-12 col-md-10 mr-2 ml-2"  #link="ngModel" type="text" name="link" [(ngModel)]="linkC" required/>
+                  <div *ngIf="link.invalid && (link.dirty || link.touched)" class="alert-danger mt-1 mr-2 ml-2 text-white col-sm-10 ">
+                    <div *ngIf="link.errors.required">
+                      Link es requerida.
+                    </div>
+                  </div>
+
+            </div>
+          </div>
+       </form>
+      </div>
+      <div class="modal-footer fondo">
+        <button type="button" class="btn " [disabled]="!formConsultaEsp.form.valid" (click)="confirmarConsulta(); formConsultaEsp.reset() " data-dismiss="modal"> CONFIRMAR</button>
+        <button type="button" class="btn "  data-dismiss="modal">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Cancelar-->
+<div class="modal fade" id="cancelarConsulta" tabindex="-1" role="dialog" aria-labelledby="cancelarConsulta" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header fondo">
+          <h5 class="modal-title font-weight-bold text-white " id="cancelarConsulta"><i class="fas fa-exclamation-triangle text-danger"></i> RECHAZAR?: </h5>
+        </div>
+        <div class="modal-body text-white fondo-body">
+          <form #formConsultaEspC="ngForm">
+            <div class="form-group">
+              <div class="row">
+                 <label class="col-12 col-md-4 font-weight-bold">DNI Paciente:</label>
+                 <div class="col-12 col-md-8"> {{consulta.dniPaciente}} </div> 
+                 <label class="col-12 col-md-4 font-weight-bold">Motivo:</label>
+                 <div class="col-12 col-md-8"> {{consulta.motivo}} </div> 
+                 <label class="col-12 font-weight-bold">Especifique el motivo de rechazo:</label>
+                  <textarea class="form-control mr-2 ml-2" #descrip="ngModel" rows="5" name="descrip" [(ngModel)]="motivoRechazo" required >  
+                  </textarea>
+                  <div *ngIf="descrip.invalid && (descrip.dirty || descrip.touched)" class="alert-danger mt-1 text-white col-sm-12">
+                    <div *ngIf="descrip.errors.required">
+                      El Motivo de rechazo es requerido.
+                    </div>
+                  </div>
+              </div>
+            </div>
+         </form>
+        </div>
+        <div class="modal-footer fondo">
+          <button type="button" class="btn " [disabled]="!(formConsultaEspC.form.valid)" (click)="rechazarConsulta(); formConsultaEspC.reset()" data-dismiss="modal"  > CONFIRMAR RECHAZO</button>
+          <button type="button" class="btn "  data-dismiss="modal">CANCELAR</button>
+        </div>
+      </div>
+    </div>
+</div>

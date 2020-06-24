@@ -7,7 +7,7 @@
                     <div class="col-sm-6 col-md-4 form-group">
                         <label for="nombre">Nombre completo</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="ayudaNombre"
-                            placeholder="Nombre completo" required #nombreV="ngModel" [(ngModel)]="pacienteNuevo.nombre">
+                            placeholder="Ej. José María" required #nombreV="ngModel" [(ngModel)]="pacienteNuevo.nombre">
                         <!-- Validacion -->
                         <div id="ayudaNombre" *ngIf="nombreV.invalid && (nombreV.dirty || nombreV.touched)">
                             <div *ngIf="nombreV.errors.required">
@@ -18,7 +18,7 @@
                     <div class="col-sm-6 col-md-4 form-group">
                         <label for="apellido">Apellido</label>
                         <input type="text" class="form-control " id="apellido" name="apellido"
-                            aria-describedby="ayudaApellido" placeholder="Apellido" required #apellidoV="ngModel"
+                            aria-describedby="ayudaApellido" placeholder="Ej. Villareal" required #apellidoV="ngModel"
                             [(ngModel)]="pacienteNuevo.apellido">
                         <!-- Validacion -->
                         <div id="ayudaApellido" *ngIf="apellidoV.invalid && (apellidoV.dirty || apellidoV.touched)">
@@ -30,7 +30,7 @@
                     <div class="col-md-4 form-group">
                         <label for="dni">D.N.I.</label>
                         <input type="number" class="form-control " id="dni" name="dni" aria-describedby="ayudaUsuario"
-                            placeholder="D.N.I" required #dniV="ngModel" [(ngModel)]="pacienteNuevo.dni" (change)="validarDni()">
+                            placeholder="Ej. 39456852" required #dniV="ngModel" [(ngModel)]="pacienteNuevo.dni" (change)="validarDni()">
                         <!-- Validacion -->
                         <div class="ayudaUsuario" *ngIf="dniV.invalid && (dniV.dirty || dniV.touched)">
                             <div *ngIf="dniV.errors.required">
@@ -46,7 +46,7 @@
                     <div class="col-sm-6 form-group">
                         <label for="contra">Contraseña</label>
                         <input type="password" class="form-control " id="contra" name="contra" aria-describedby="ayudaPass"
-                            placeholder="Contraseña" required #contraV="ngModel" [(ngModel)]="pacienteNuevo.contrasena" (change)="validarContrasena()">
+                            placeholder="Letras y numeros" required #contraV="ngModel" [(ngModel)]="pacienteNuevo.contrasena" (change)="validarContrasena()">
                         <!-- Validacion -->
                         <div *ngIf="contraV.invalid && (contraV.dirty || contraV.touched)">
                             <div *ngIf="contraV.errors.required">
@@ -58,7 +58,7 @@
                     <div class="col-sm-6 form-group">
                         <label for="contraConfirm">Confirmar contraseña</label>
                         <input type="password" class="form-control" id="contraConfirm" name="contraConfirm"
-                            placeholder="Confirmar contraseña" required #contraConfirmV="ngModel"
+                            placeholder="Letras y numeros" required #contraConfirmV="ngModel"
                             [(ngModel)]="confirmarContrasena" (change)="validarContrasena()">
     
                         <!-- Validacion -->
@@ -77,7 +77,7 @@
                     <div class="col-sm-6 form-group">
                         <label for="email">E-mail</label>
                         <input type="email" class="form-control " id="email" name="email" aria-describedby="ayudaEmail"
-                            placeholder="E-mail" required #emailV="ngModel" [(ngModel)]="pacienteNuevo.email" (change)="validarEmail()">
+                            placeholder="Ej. jose@gmail.com" required #emailV="ngModel" [(ngModel)]="pacienteNuevo.email" (change)="validarEmail()">
                         <!-- Validacion -->
                         <div *ngIf="emailV.invalid && (emailV.dirty || emailV.touched)">
                             <div *ngIf="emailV.errors.required">
@@ -91,7 +91,7 @@
                     <div class="col-sm-6 form-group">
                         <label for="emailConfirm">Confirmar e-mail</label>
                         <input type="email" class="form-control " id="emailConfirm" name="emailConfirm"
-                            placeholder="Confirmar e-mail" required #emailConfirmV="ngModel" [(ngModel)]="confirmarEmail" (change)="validarEmail()">
+                            placeholder="Ej. jose@gmail.com" required #emailConfirmV="ngModel" [(ngModel)]="confirmarEmail" (change)="validarEmail()">
                         <!-- Validacion -->
                         <div *ngIf="emailConfirmV.invalid && (emailConfirmV.dirty || emailConfirmV.touched)">
                             <div *ngIf="emailConfirmV.errors.required">
@@ -106,7 +106,7 @@
                 <div class="form-row pt-2 my-text-2">
                     <div class="col-sm-6 col-md-4 form-group">
                         <label for="fecha">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="ayudaFecha"
+                        <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="ayudaFecha" placeholder="Ej. 25/6/1990"
                             required #fechaV="ngModel" [(ngModel)]="pacienteNuevo.fechaNacimiento">
                         <!-- Validacion -->
                         <div *ngIf="fechaV.invalid && (fechaV.dirty || fechaV.touched)">
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-sm-6 col-md-4 form-group">
                         <label for="direccion">Direccion</label>
-                        <input type="text" placeholder="Calle Petranca 453" class="form-control" id="direccion"
+                        <input type="text" placeholder="Ej. Calle Petranca 453" class="form-control" id="direccion"
                             name="direccion" aria-describedby="ayudaDireccion" required #direccionV="ngModel"
                             [(ngModel)]="pacienteNuevo.direccion">
                         <!-- Validacion -->

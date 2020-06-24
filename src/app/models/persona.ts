@@ -4,6 +4,7 @@ export class Persona {
     apellido:string;
     nombre:string;
     dni:number;
+    contrasena:string;
     direccion:string;
     telefono:string;
     email:string;

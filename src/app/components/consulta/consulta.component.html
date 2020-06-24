@@ -1,7 +1,164 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 my-5">
-            <p class="display-3 text-center text-white">GESTION DE CONSULTAS EN TRABAJO...</p>
+        <div class="col-12">
+            <div class="row mt-3 mb-5 justify-content-center p-2">
+                <div class="col-12 col-md-8">
+                  <form class="card" #formConsulta="ngForm" >
+                    <div class="card-header fondo"> 
+                       <h3 class=" font-weight-bold text-white">  Solicitud para Consultas ONLINE:  </h3>  
+                     </div>
+                      <div class="card-body fondo-body text-white">
+                        <div class="row form-group">
+                          <label class="col-sm-12 col-md-4 font-weight-bold">DNI: </label>
+                          {{pacienteService.pacienteLogged.dni}}
+                          
+                      </div>
+                       <div class="row form-group">
+                          <label class="col-sm-12 col-md-4 font-weight-bold" >Apellido y Nombre: </label>
+                           {{pacienteService.pacienteLogged.apellido}} , {{pacienteService.pacienteLogged.nombre}}
+                        </div>
+
+                        <div class="row"> 
+                            <label class="col-12 col-md-10 font-weight-bold text-white">Descripci&oacute;n sobre la solicitud de la consulta: </label> 
+                    
+                          </div>    
+                        <div class="row form-group"> 
+                            <textarea class="form-control mr-2 ml-2" #descrip="ngModel" rows="5" name="descrip" [(ngModel)]="consulta.motivo" required >  
+                            </textarea>
+                            <div *ngIf="descrip.invalid && (descrip.dirty || descrip.touched)" class="alert-danger mt-1 text-white col-sm-12">
+                              <div *ngIf="descrip.errors.required">
+                                El mensaje debe tener al menos 1 caracter
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="medico" class="col-sm-12 col-md-3 font-weight-bold text-white">Especialista:</label>
+                            <select id="medico" class="form-control col-sm-12 col-md-9" required
+                                name="empresa" #medico="ngModel" [(ngModel)] = "especialista" >
+                                <option *ngFor="let esp of especialistas" [ngValue]="esp">{{esp.apellido }}, {{esp.especialidad}} </option>
+                            </select>
+                            <div *ngIf="medico.invalid && (medico.dirty || medico.touched)" class="alert-danger mt-1 text-white col-sm-12 offset-md-3 col-md-9">
+                              <div *ngIf="medico.errors.required">
+                                Especialista es requerido.
+                              </div>
+                            </div>
+                          </div>  
+
+                       <div class="row form-group">
+                           <div class="col-12 p-3 mr-2">
+                             <button type="button" class="btn btn-dark m-1" (click)="prepararConsulta()" data-toggle="modal" data-target="#confirmarConsulta" [disabled]="!(formConsulta.form.valid)" ><i class="fas fa-check-square"></i> Solicitar</button>                       
+                           </div>
+                        </div>
+                      </div>
+              </form>
+            </div>
+                  
+          </div>
+      
+            <!--  -->
+            <div class="row mb-5">
+              <div class="col-sm-12 justify-content-center fondo">
+                <div class="h3 bg-gray text-center mt-2 mb-2 text-white"> LISTA DE CONSULTAS SOLICITADAS:</div>
+              </div>
+            </div>
+            <!-- tabla -->
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-md-10 table-responsive">
+                <table class="table table-striped " [mfData]="consultas" #mf="mfDataTable" [mfRowsOnPage]="5">
+                  <thead class="fondo text-white">
+                    <tr class="text-center">
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="dniPaciente"> DNI Paciente</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="nombrePaciente"> Paciente</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="motivo"><i class="fas fa-check"></i> Motivo</mfDefaultSorter>
+                      </th>
+                      
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="especialidad"><i class="fas fa-check"></i> Especialidad</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="nombreMedico"><i class="fas fa-check"></i> Medico</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="fecha"> Fecha</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="link"><i class="fas fa-check"></i> Link</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="estado"><i class="fas fa-check"></i> Estado</mfDefaultSorter>
+                      </th>
+                      <th style="width: 20%">
+                        <mfDefaultSorter by="estado"><i class="fas fa-check"></i> MotivoRechazo</mfDefaultSorter>
+                      </th>
+                      <!-- <th style="width: 10%">
+                        Acciones:
+                    </th> -->
+                    </tr>
+                  </thead>
+                  <tbody class="text-white fondo-body text-center">
+                    <tr *ngFor="let item of mf.data">
+                      <td> {{item.dniPaciente}} </td>
+                      <td> {{item.nombrePaciente | uppercase}} </td>
+                      <td> {{item.motivo}} </td>
+                      <td> {{item.especialidad | uppercase}} </td>
+                      <td> {{item.nombreMedico}} </td>
+                      <td> {{item.fecha | date:"short"}} </td> 
+                      <td> {{item.link}} </td>
+                      <td> {{item.estado}} </td> 
+                      <td> {{item.motivoRechazo}} </td> 
+                      <!-- <td> 
+                        <button type="button" title="delete" class="btn btn-dark mr-1 mb-1" (click)="cargarConsultaModal(item)" data-toggle="modal" data-target="#cancelarConsulta"><i class="fas fa-trash-alt"></i></button>          
+                      </td>   -->
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="9">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,15,20]"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            
+            </div> 
+      
         </div>
-    </div>
+      </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="confirmarConsulta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header fondo">
+              <h5 class="modal-title font-weight-bold text-white " id="exampleModalLabel"><i class="fas fa-exclamation-triangle text-danger"></i> CONFIRMACION DE SOLICITUD: </h5>
+            </div>
+            <div class="modal-body text-white fondo-body">
+              <form>
+                <div class="form-group">
+                  <div class="row">
+                    <label class="col-12 font-weight-bold"> Solicitar? </label>
+                     <label class="col-12 col-md-4 font-weight-bold">DNI:</label>
+                     <div class="col-12 col-md-8"> {{consulta.dniPaciente}} </div> 
+                     <label class="col-12 col-md-4 font-weight-bold">Especialidad:</label>
+                     <div class="col-12 col-md-8"> {{nombreEspecialidad}} </div> 
+                     <label class="col-12 col-md-4 font-weight-bold">Motivo:</label>
+                     <div class="col-12 col-md-8"> {{consulta.motivo}} </div> 
+                  </div>
+                </div>
+             </form>
+            </div>
+            <div class="modal-footer fondo">
+              <button type="button" class="btn btn-dark" (click)="guardarConsulta(); formConsulta.reset() " data-dismiss="modal">ACEPTAR</button>
+              <button type="button" class="btn btn-dark"  data-dismiss="modal">CANCELAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
