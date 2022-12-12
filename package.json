@@ -23,7 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "angular-9-datatable": "^0.1.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.9.18",
     "ngx-cookie-service": "^3.0.4",
     "ngx-toastr": "^12.1.0",
